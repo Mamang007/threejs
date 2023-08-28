@@ -59,6 +59,15 @@ const Customizer = () => {
         state.isLogoTexture = true;
         state.isFullTexture = false;
     }
+
+    //After Setting the State, ActiFilterTab is updated UI
+
+    setActiveFilterTab((prevState) => {
+      return {
+        ...prevState,
+        [tabName]: !prevState[tabName],
+      };
+    });
   };
 
   const readFile = (type) => {
@@ -90,7 +99,7 @@ const Customizer = () => {
 
           <motion.div className="filtertabs-container" {...slideAnimation("up")}>
             {FilterTabs.map((tab) => (
-              <Tab key={tab.name} tab={tab} isFilterTab="" isActiveTab="" handleClick={() => {}} />
+              <Tab key={tab.name} tab={tab} isFilterTab="" isActiveTab={activeFilterTab[tab.name]} handleClick={() => handleActiveFilterTab(tab.name)} />
             ))}
           </motion.div>
         </>
